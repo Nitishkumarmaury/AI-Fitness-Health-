@@ -310,8 +310,12 @@
             
             // Attach event listeners after the elements are in the DOM
             requestAnimationFrame(() => {
-                document.getElementById('file-upload-input').addEventListener('change', handleFileChange);
-                document.getElementById('analyze-button').addEventListener('click', analyzeImage);
+                // Check if elements exist before attaching listeners
+                const fileInput = document.getElementById('file-upload-input');
+                if (fileInput) fileInput.addEventListener('change', handleFileChange);
+                
+                const analyzeBtn = document.getElementById('analyze-button');
+                if (analyzeBtn) analyzeBtn.addEventListener('click', analyzeImage);
             });
 
             return view;
@@ -449,3 +453,8 @@
         };
 
         // Initialize the application once the script is loaded
+        document.addEventListener('DOMContentLoaded', renderApp);
+
+    </script>
+</body>
+</html>
